@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProgrammingHero-B11A6</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tiro+Bangla:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+      .poppins {
+        font-family: "Poppins", sans-serif;
+      }
+      .hind-siliguri {
+        font-family: "Hind Siliguri", sans-serif;
+      }
+      .tiro-bangla {
+        font-family: "Tiro Bangla", serif;
+      }
+      .active{
+        background: #422ad5;
+        color: #fff;
+      }
+    </style>
+  </head>
+
+  <body class="poppins">
+    <!-- <header
+      class="py-7 border border-[#C6BDBD] bg-[#F8F8F8] shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)]"
+    >
+      <div
+        class="max-w-[1760px] w-11/12 mx-auto flex justify-between items-center"
+      >
+        <a href="#url" class="logo flex items-center">
+          <span class="text-[#18181B] text-xl font-semibold">English</span>
+          <img
+            src="assets/logo.png"
+            alt="logo"
+            class="w-10 h-10 object-cover mx-1"
+          />
+          <span class="text-[#18181B] text-xl tiro-bangla">জানালা</span>
+        </a>
+        <div class="btnList">
+          <ul class="flex items-center">
+            <li>
+              <button
+                class="btn btn-outline btn-primary text-sm font-semibold ml-4"
+              >
+                <i class="fa-solid fa-circle-question mr-1"></i>FAQ
+              </button>
+            </li>
+            <li>
+              <button
+                class="btn btn-outline btn-primary text-sm font-semibold ml-4"
+              >
+                <i class="fa-solid fa-book-open mr-1"></i>Learn
+              </button>
+            </li>
+            <li>
+              <button
+                class="btn btn-outline btn-primary text-sm font-semibold ml-4"
+              >
+                <i class="fa-solid fa-right-from-bracket mr-1"></i>Logout
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header> -->
+    <main>
+      <!-- <section class="bannerSection max-w-[1760px] w-11/12 mx-auto flex justify-between items-center py-24">
+        <div class="w-1/2">
+          <h2 class="text-[#00BCFF] font-bold text-6xl pb-6">English <span class="text-[#18181B]">is Easy!!</span></h2>
+          <p class="text-2xl font-medium text-[#18181B] opacity-80">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা <br> আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে <br> যাবে অন্য একটি Level এ</p>
+          <div class="max-w-[320px] pt-10">
+            <form action="">
+              <input type="text" placeholder="Enter Your Name" class="input w-full mb-5 text-sm"  />
+              <input type="password" placeholder=".............." class="input w-full mb-5 text-sm" />
+              <button class="btn btn-primary">Get Started</button>
+            </form>
+          </div>
+        </div>
+        <div class="w-1/2 text-center">
+          <img class="inline-block" src="assets/hero-student.png" alt="hero">
+        </div>
+      </section> -->
+      <section class="max-w-[1760px] w-11/12 mx-auto py-24">
+        <h2 class="text-[#00BCFF] font-bold text-4xl pb-6 text-center">Let's  <span class="text-[#18181B]">Learn Vocabularies</span></h2>
+        <div id="btnList" class="flex justify-center"></div>
+        <div id="showWords" class="rounded-3xl bg-[#F8F8F8] grid grid-cols-3 gap-8 p-8 mt-10">
+          <div class="text-center col-span-full">
+            <p class="text-[#79716B] text-sm hind-siliguri pb-3">আপনি এখনো কোন Lesson Select করেন ন</p>
+            <span class="hind-siliguri font-medium text-4xl text-[#292524]">একটি Lesson Select করুন।</span>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Open the modal using ID.showModal() method -->
+    <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
+    <dialog id="wordInfo" class="modal">
+      <div class="modal-box !max-w-[750px]" id="modalContainer">
+        
+      </div>
+    </dialog>
+    <script src="extra.js"></script>
+    <script src="api.js"></script>
+  </body>
+</html>
