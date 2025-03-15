@@ -18,6 +18,9 @@
       type="text/css"
     />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css">
+    <script src="https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.min.js"></script>
     <style>
       .poppins {
         font-family: "Poppins", sans-serif;
@@ -28,7 +31,7 @@
       .tiro-bangla {
         font-family: "Tiro Bangla", serif;
       }
-      .active{
+      .active {
         background: #422ad5;
         color: #fff;
       }
@@ -36,8 +39,8 @@
   </head>
 
   <body class="poppins">
-    <!-- <header
-      class="py-7 border border-[#C6BDBD] bg-[#F8F8F8] shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)]"
+    <header id="menu"
+      class="py-7 border border-[#C6BDBD] bg-[#F8F8F8] shadow-[inset_0_2px_10px_rgba(0,0,0,0.2)] w-full fixed z-10 top-0 left-0 hidden"
     >
       <div
         class="max-w-[1760px] w-11/12 mx-auto flex justify-between items-center"
@@ -54,64 +57,162 @@
         <div class="btnList">
           <ul class="flex items-center">
             <li>
-              <button
-                class="btn btn-outline btn-primary text-sm font-semibold ml-4"
+              <a
+                class="btn btn-outline btn-primary text-sm font-semibold ml-4" href="#faq"
               >
                 <i class="fa-solid fa-circle-question mr-1"></i>FAQ
-              </button>
+              </a>
             </li>
             <li>
-              <button
-                class="btn btn-outline btn-primary text-sm font-semibold ml-4"
+              <a
+                class="btn btn-outline btn-primary text-sm font-semibold ml-4" href="#learn"
               >
                 <i class="fa-solid fa-book-open mr-1"></i>Learn
-              </button>
+              </a>
             </li>
             <li>
-              <button
-                class="btn btn-outline btn-primary text-sm font-semibold ml-4"
+              <a
+                class="btn btn-outline btn-primary text-sm font-semibold ml-4" href="#url"
               >
                 <i class="fa-solid fa-right-from-bracket mr-1"></i>Logout
-              </button>
+              </a>
             </li>
           </ul>
         </div>
       </div>
-    </header> -->
+    </header>
     <main>
-      <!-- <section class="bannerSection max-w-[1760px] w-11/12 mx-auto flex justify-between items-center py-24">
+      <section id="bannerSection" class="bannerSection max-w-[1760px] w-11/12 mx-auto flex justify-between items-center py-24">
         <div class="w-1/2">
           <h2 class="text-[#00BCFF] font-bold text-6xl pb-6">English <span class="text-[#18181B]">is Easy!!</span></h2>
-          <p class="text-2xl font-medium text-[#18181B] opacity-80">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা <br> আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে <br> যাবে অন্য একটি Level এ</p>
+          <p class="text-2xl font-medium text-[#18181B] opacity-80 hind-siliguri">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা <br> আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে <br> যাবে অন্য একটি Level এ</p>
           <div class="max-w-[320px] pt-10">
             <form action="">
-              <input type="text" placeholder="Enter Your Name" class="input w-full mb-5 text-sm"  />
-              <input type="password" placeholder=".............." class="input w-full mb-5 text-sm" />
-              <button class="btn btn-primary">Get Started</button>
+              <input type="text" placeholder="Enter Your Name" class="input w-full mb-5 text-sm" id="nameField"  />
+              <input type="password" placeholder="Enter Login Code(123456)" class="input w-full mb-5 text-sm" id="passField" />
+              <button class="btn btn-primary" id="btn-started">Get Started</button>
             </form>
           </div>
         </div>
         <div class="w-1/2 text-center">
           <img class="inline-block" src="assets/hero-student.png" alt="hero">
         </div>
-      </section> -->
-      <section class="max-w-[1760px] w-11/12 mx-auto py-24">
-        <h2 class="text-[#00BCFF] font-bold text-4xl pb-6 text-center">Let's  <span class="text-[#18181B]">Learn Vocabularies</span></h2>
-        <div id="btnList" class="flex justify-center"></div>
-        <div id="showWords" class="rounded-3xl bg-[#F8F8F8] grid grid-cols-3 gap-8 p-8 mt-10">
+      </section>
+      <section class="max-w-[1760px] w-11/12 mx-auto py-24 hidden" id="learn">
+        <h2 class="text-[#00BCFF] font-bold text-4xl pb-6 text-center">
+          Let's <span class="text-[#18181B]">Learn Vocabularies</span>
+        </h2>
+        <div id="btnList" class="flex justify-center mt-5"></div>
+        <div
+          id="showWords"
+          class="rounded-3xl bg-[#F8F8F8] grid grid-cols-3 gap-8 p-8 mt-10"
+        >
           <div class="text-center col-span-full">
-            <p class="text-[#79716B] text-sm hind-siliguri pb-3">আপনি এখনো কোন Lesson Select করেন ন</p>
-            <span class="hind-siliguri font-medium text-4xl text-[#292524]">একটি Lesson Select করুন।</span>
+            <p class="text-[#79716B] text-sm hind-siliguri pb-3 font-medium">
+              আপনি এখনো কোন Lesson Select করেন ন
+            </p>
+            <span class="hind-siliguri font-medium text-4xl text-[#292524]"
+              >একটি Lesson Select করুন।</span
+            >
+          </div>
+        </div>
+      </section>
+      <section class="max-w-[1760px] w-11/12 mx-auto py-24 hidden" id="faq">
+        <h2 class="text-[#00BCFF] font-bold text-4xl pb-6 text-center">
+          Frequently <span class="text-[#18181B]">Asked Questions</span>
+        </h2>
+        <div class="accordianContainer">
+          <div
+            class="collapse collapse-plus bg-[#F8F8F8] rounded-2xl mt-5"
+          >
+            <input type="radio" name="my-accordion-3" checked="checked" />
+            <div class="collapse-title font-semibold">
+              The difference between var, let, and const ?
+            </div>
+            <div class="collapse-content text-[#62748E]">
+              var :- var হলো পুরোনো পদ্ধতি, যা ফাংশন স্কোপে কাজ করে এবং হোইস্টিং হয়, মানে আগে ডিক্লেয়ার না করেও ব্যবহার করা যায় । <br>
+              let :- let হলো ব্লক স্কোপে কাজ করে এবং পুনরায় অ্যাসাইন করা যায়। <br>
+              const :- const ও ব্লক স্কোপে কাজ করে, তবে এটা একবার ডিক্লেয়ার করার পর পুনরায় আর ডিক্লেয়ার করা যায় না।
+            </div>
+          </div>
+          <div
+            class="collapse collapse-plus bg-[#F8F8F8] rounded-2xl mt-5"
+          >
+            <input type="radio" name="my-accordion-3" checked="checked" />
+            <div class="collapse-title font-semibold">
+              The difference between map(), forEach(), and filter() ?
+            </div>
+            <div class="collapse-content text-[#62748E]">
+              map(): অ্যারের প্রতিটি উপাদানকে পরিবর্তন করে তারপর নতুন অ্যারে দেয়। <br>
+              forEach(): অ্যারের প্রতিটি উপাদানের সাথে কিছু কাজ করে কিন্তু সে নতুন অ্যারে দেয় না। <br>
+              filter(): শর্ত মেনে উপাদানগুলোকে বাছাই করে তারপর নতুন অ্যারে দেয়।
+            </div>
+          </div>
+          <div
+            class="collapse collapse-plus bg-[#F8F8F8] rounded-2xl mt-5"
+          >
+            <input type="radio" name="my-accordion-3" checked="checked" />
+            <div class="collapse-title font-semibold">
+              Explain arrow functions and how they are different from regular functions ?
+            </div>
+            <div class="collapse-content text-[#62748E]">
+              Arrow function সহজ এবং সংক্ষিপ্ত এবং এতে arguments নেই ।
+              Regular function বড়ো এবং এতে arguments আছে ।
+            </div>
+          </div>
+          <div
+            class="collapse collapse-plus bg-[#F8F8F8] rounded-2xl mt-5"
+          >
+            <input type="radio" name="my-accordion-3" checked="checked" />
+            <div class="collapse-title font-semibold">
+              How JavaScript Promises work ?
+            </div>
+            <div class="collapse-content text-[#62748E]">
+              Promise হলো একটি কথা দেওয়া, যেখানে আমি জানি কাজটি হইতো সফল হবে বা হইতো কখনো ব্যর্থ হবে। কাজ সফল হলে then() দিয়ে লেখা হয় আর কাজ ব্যর্থ হলে catch() দিয়ে লেখা হয়।
+            </div>
+          </div>
+          <div
+            class="collapse collapse-plus bg-[#F8F8F8] rounded-2xl mt-5"
+          >
+            <input type="radio" name="my-accordion-3" checked="checked" />
+            <div class="collapse-title font-semibold">
+              How closures work in JavaScript ?
+            </div>
+            <div class="collapse-content text-[#62748E]">
+              Closure এর মাধ্যমে ভিতরের ফাংশনটি বাইরের ফাংশনের ভেরিয়েবল ব্যবহার করতে পারে এমনকি বাইরের ফাংশনটি একবার শেষ হয়ে গেলেও ভিতরের ফাংশনটি তার ভেরিয়েবল ধরে রাখতে পারে।
+            </div>
           </div>
         </div>
       </section>
     </main>
-    <!-- Open the modal using ID.showModal() method -->
+    <footer class="mt-24 border border-[#FFEBEB]">
+      <div class="max-w-[1760px] w-11/12 mx-auto py-24 flex justify-between flex-wrap items-end">
+        <div>
+          <a href="#url" class="logo flex items-center">
+            <span class="text-[#18181B] text-xl font-semibold">English</span>
+            <img
+              src="assets/logo.png"
+              alt="logo"
+              class="w-10 h-10 object-cover mx-1"
+            />
+            <span class="text-[#18181B] text-xl tiro-bangla">জানালা</span>
+          </a>
+          <span class="text-[#18181B] text-xl font-medium hind-siliguri block pt-5 pb-2">ইংরেজি শিখুন সহজে</span>
+          <span class="text-[#18181B] text-base hind-siliguri">Providing ED-Tech Applications since 2025</span>
+        </div>
+        <div>
+          <p class="text-[#18181B] text-sm font-semibold uppercase opacity-60">Follow us</p>
+          <ul class="text-2xl flex items-center gap-4 pt-4">
+            <li><a href="#url" target="_blank" class="text-[#18181B] hover:text-[#00BCFF] transition-all"><i class="fa-brands fa-facebook"></i></a></li>
+            <li><a href="#url" target="_blank" class="text-[#18181B] hover:text-[#00BCFF] transition-all"><i class="fa-brands fa-youtube"></i></a></li>
+            <li><a href="#url" target="_blank" class="text-[#18181B] hover:text-[#00BCFF] transition-all"><i class="fa-brands fa-instagram"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
     <!-- <button class="btn" onclick="my_modal_1.showModal()">open modal</button> -->
     <dialog id="wordInfo" class="modal">
-      <div class="modal-box !max-w-[750px]" id="modalContainer">
-        
-      </div>
+      <div class="modal-box !max-w-[750px]" id="modalContainer"></div>
     </dialog>
     <script src="extra.js"></script>
     <script src="api.js"></script>
