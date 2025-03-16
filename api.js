@@ -79,7 +79,6 @@ const loadInfo = (infoID) => {
 };
 
 const showInfo = (informations) => {
-  console.log(informations);
   const synonyms = informations.synonyms;
   document.getElementById("wordInfo").showModal();
   const modalContainer = document.getElementById("modalContainer");
@@ -119,5 +118,3 @@ const showInfo = (informations) => {
     `;
   modalContainer.appendChild(div);
 };
-
-

@@ -6,13 +6,15 @@ document.getElementById("btn-started").addEventListener("click", (e) => {
     alert("Please use your Name and Password");
   } else {
     if (nameField && parseInt(passField) === 123456) {
-      sweetAlert();
-      const bannerSection = document
-        .getElementById("bannerSection")
-        .classList.add("hidden");
-      const menu = document.getElementById("menu").classList.remove("hidden");
-      const learn = document.getElementById("learn").classList.remove("hidden");
-      const faq = document.getElementById("faq").classList.remove("hidden");
+      Swal.fire({
+        title: "Good job!",
+        text: "You clicked the button!",
+        icon: "success",
+      });
+      document.getElementById("bannerSection").classList.add("hidden");
+      document.getElementById("menu").classList.remove("hidden");
+      document.getElementById("learn").classList.remove("hidden");
+      document.getElementById("faq").classList.remove("hidden");
     } else {
       if (passField) {
         alert("Please type your Password (123456) ");
@@ -27,9 +29,6 @@ document.getElementById("btn-started").addEventListener("click", (e) => {
   }
 });
 
-const sweetAlert = () => {
-  swal("Good job!", "You clicked the button!", "success");
-};
 
 // window.addEventListener("scroll", () => {
 //   const menu = document.getElementById("menu");
