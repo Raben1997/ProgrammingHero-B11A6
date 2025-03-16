@@ -1,4 +1,5 @@
 document.getElementById("btn-started").addEventListener("click", (e) => {
+  e.preventDefault();
   const nameField = document.getElementById("nameField").value;
   const passField = document.getElementById("passField").value;
 
@@ -8,7 +9,7 @@ document.getElementById("btn-started").addEventListener("click", (e) => {
     if (nameField && parseInt(passField) === 123456) {
       Swal.fire({
         title: "Good job!",
-        text: "You clicked the button!",
+        text: "Login Successfully!!!",
         icon: "success",
       });
       document.getElementById("bannerSection").classList.add("hidden");
@@ -29,6 +30,13 @@ document.getElementById("btn-started").addEventListener("click", (e) => {
   }
 });
 
+
+document.getElementById("logout").addEventListener("click", (e) => {
+  document.getElementById("bannerSection").classList.remove("hidden");
+  document.getElementById("menu").classList.add("hidden");
+  document.getElementById("learn").classList.add("hidden");
+  document.getElementById("faq").classList.add("hidden");
+})
 
 // window.addEventListener("scroll", () => {
 //   const menu = document.getElementById("menu");

@@ -10,7 +10,7 @@ const showBtn = (btns) => {
 
     const div = document.createElement("div");
     div.innerHTML = `
-    <button id="btn-${btn.level_no}" onClick = "loadWord(${btn.level_no})" class="btn btn-outline btn-primary text-sm font-semibold mx-1 btn-level"><i class="fa-solid fa-book-open mr-1"></i>${btn.lessonName}</button>
+    <button id="btn-${btn.level_no}" onClick = "loadWord(${btn.level_no})" class="btn btn-outline btn-primary text-sm font-semibold mx-1 btn-level"><i class="fa-solid fa-book-open mr-1"></i>Lesson-${btn.level_no}</button>
     `;
     btnList.appendChild(div);
   }
@@ -19,13 +19,17 @@ const showBtn = (btns) => {
 loadBtn();
 
 const loadWord = (btnID) => {
+  showSpinner();
   fetch(`https://openapi.programming-hero.com/api/level/${btnID}`)
     .then((res) => res.json())
     .then((data) => {
       removeBtnActiveClass();
       const clickedBtn = document.getElementById(`btn-${btnID}`);
       clickedBtn.classList.add("active");
-      showWord(data.data);
+      if (data.data) {
+        showWord(data.data);
+        hideSpinner();
+      }
     });
 };
 
@@ -64,7 +68,7 @@ const showWord = (words) => {
             }" onClick="loadInfo(${
         word.id
       })"><i class="fa-solid fa-circle-info"></i></button>
-            <button class="text-[#374957] rounded-lg bg-[rgba(26,145,255,0.1)] flex justify-center items-center w-14 h-14 cursor-pointer"><i class="fa-solid fa-volume-high"></i></button>
+            <button id="spkr-${word.id}" onClick="pronounceWord('${word.word}')" class="text-[#374957] rounded-lg bg-[rgba(26,145,255,0.1)] flex justify-center items-center w-14 h-14 cursor-pointer"><i class="fa-solid fa-volume-high"></i></button>
         </div>
         `;
       showWords.appendChild(div);
@@ -117,4 +121,18 @@ const showInfo = (informations) => {
     </div>
     `;
   modalContainer.appendChild(div);
+};
+
+function pronounceWord(word) {
+  const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = 'en-EN'; // English
+  window.speechSynthesis.speak(utterance);
+}
+
+const showSpinner = () => {
+  document.getElementById("spinner").classList.remove("hidden");
+};
+
+const hideSpinner = () => {
+  document.getElementById("spinner").classList.add("hidden");
 };
